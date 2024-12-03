@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!-- saved from url=(0026)http://172.16.18.185:5500/ -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal REA - Recursos Educativos Abiertos</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="./Portal REA - Recursos Educativos Abiertos_files/script.js.descargar" defer=""></script>
+</head>
+<body>
+    <!-- Header con navegación principal -->
+    <header>
+        <h1>Portal REA</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#registro">Registro/Login</a></li>
+                <li><a href="#perfil">Perfil</a></li>
+                <li><a href="favoritos">Favoritos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sección de Inicio -->
+    <section id="inicio">
+        <h2>Bienvenidos al Portal de Recursos Educativos Abiertos</h2>
+        <p>Descubre recursos educativos gratuitos y de calidad.</p>
+        <div class="destacados">
+            <h3>Recursos Destacados</h3>
+            <br>
+            <div class="recurso-card">
+                <h4>Ethics for Engineers: Artificial Intelligence</h4>
+                <p>Ética de la IA: justicia, transparencia, privacidad, responsabilidad, equidad, seguridad, impacto.</p>
+                <a href="Recursos/recruso1.html">Ver más</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Catálogo de Recursos -->
+    <section id="catalogo">
+        <h2>Catálogo de Recursos</h2>
+        <div class="filtros">
+            <select name="nivel">
+                <option value="todos">Todos los niveles</option>
+            </select>
+        </div>
+        <div class="recursos-lista">
+            <div class="recurso-card" data-id="1">
+                <h4>Ethics for Engineers: Artificial Intelligence</h4>
+                <p>Ética de la IA: justicia, transparencia, privacidad, responsabilidad, equidad, seguridad, impacto.</p>
+                <a href="Recursos/recruso1.html">Ver detalles</a>
+                <br>
+                <button class="fav-btn" onclick="toggleFavorito(1)">☆</button>
+            </div>
+            <div class="recurso-card" data-id="2">
+                <h4>Operating System Engineering</h4>
+                <p>Ingeniería de sistemas operativos: diseño, gestión, seguridad, rendimiento, memoria, procesos, concurrencia.</p>
+                <a href="Recursos/recruso2.html">Ver detalles</a>
+                <br>
+                <button class="fav-btn" onclick="toggleFavorito(2)">☆</button>
+            </div>
+            <div class="recurso-card" data-id="3">
+                <h4>Sustainable Real Estate</h4>
+                <p>Inmobiliaria sostenible: eficiencia energética, materiales ecológicos, bienestar social.</p>
+                <a href="Recursos/recruso3.html">Ver detalles</a>
+                <br>
+                <button class="fav-btn" onclick="toggleFavorito(3)">☆</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulario de Registro -->
+    <section id="registro">
+        <h2>Registro</h2>
+        <form id="form-registro">
+            <input type="text" id="nombre" placeholder="Nombre" required="">
+            <input type="email" id="correo" placeholder="Correo Electrónico" required="">
+            <input type="password" id="contrasena" placeholder="Contraseña" required="">
+            <button type="submit">Registrarse</button>
+        </form>
+    </section>
+
+    <!-- Perfil del Usuario -->
+    <section id="perfil" style="display:none;">
+        <h2>Perfil del Usuario</h2>
+        <p id="usuario-info"></p>
+        <button id="cerrar-sesion">Cerrar sesión</button>
+    </section>
+
+    <!-- Favoritos del Usuario -->
+    <section id="favoritos" style="display:none;">
+        <h2>Favoritos</h2>
+        <div class="recursos-lista" id="lista-favoritos">
+            <!-- Los recursos favoritos se mostrarán aquí -->
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Portal REA. Todos los derechos reservados.</p>
+    </footer>
+    
+    <script>
+        const formRegistro = document.getElementById('form-registro');
+        const perfilSection = document.getElementById('perfil');
+        const registroSection = document.getElementById('registro');
+        const usuarioInfo = document.getElementById('usuario-info');
+        const cerrarSesionBtn = document.getElementById('cerrar-sesion');
+        const favoritosSection = document.getElementById('favoritos');
+        const listaFavoritos = document.getElementById('lista-favoritos');
+
+        let favoritos = [];
+
+        // Manejo de registro de usuario
+        formRegistro.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const correo = document.getElementById('correo').value;
+            usuarioInfo.textContent = `Nombre: ${nombre} | Correo: ${correo}`;
+            registroSection.style.display = 'none';
+            perfilSection.style.display = 'block';
+        });
+
+        cerrarSesionBtn.addEventListener('click', function() {
+            formRegistro.reset();
+            registroSection.style.display = 'block';
+            perfilSection.style.display = 'none';
+            favoritosSection.style.display = 'none';
+            favoritos = [];
+            listaFavoritos.innerHTML = '';
+        });
+
+        // Función para gestionar favoritos
+        function toggleFavorito(id) {
+            const recursoCard = document.querySelector(`.recurso-card[data-id="${id}"]`);
+            const titulo = recursoCard.querySelector('h4').textContent;
+            const descripcion = recursoCard.querySelector('p').textContent;
+
+            if (favoritos.find(fav => fav.id === id)) {
+                favoritos = favoritos.filter(fav => fav.id !== id);
+                recursoCard.querySelector('.fav-btn').textContent = '☆';
+            } else {
+                favoritos.push({ id, titulo, descripcion });
+                recursoCard.querySelector('.fav-btn').textContent = '★';
+            }
+            actualizarFavoritos();
+        }
+
+        // Muestra la lista de favoritos
+        function actualizarFavoritos() {
+            listaFavoritos.innerHTML = favoritos.map(fav => `
+                <div class="recurso-card">
+                    <h4>${fav.titulo}</h4>
+                    <p>${fav.descripcion}</p>
+                </div>
+            `).join('');
+            favoritosSection.style.display = favoritos.length ? 'block' : 'none';
+        }
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+
+</body></html>

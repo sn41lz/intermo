@@ -1,0 +1,360 @@
+/* Reset básico para eliminar márgenes y rellenos predeterminados */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Configuración general del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding-top: 60px; /* Espacio superior para el header fijo */
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave en el header */
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #f4a261; /* Color al pasar el mouse */
+}
+
+/* Sección de Inicio */
+#inicio {
+    background-color: #fff;
+    padding: 80px 20px 20px; /* Ajuste para compensar el header fijo */
+    text-align: center;
+}
+
+#inicio h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+#inicio p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.destacados {
+    display: inline;
+    width: 100%; /* Asegura que ocupe todo el ancho */
+    padding: 20px; /* Espaciado opcional */
+    gap: 15px; /* Espacio entre tarjetas */
+    margin: 0 auto; /* Centra el contenedor si hay margen lateral */
+    text-align: center; /* Centra el texto dentro de las tarjetas */
+}
+
+.recurso-card {
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 280px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recurso-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.recurso-card h4 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.recurso-card p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.recurso-card a {
+    color: #f4a261;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.recurso-card a:hover {
+    color: #e76f51; /* Color al pasar el mouse sobre el enlace */
+}
+
+/* Catálogo de Recursos */
+#catalogo {
+    background-color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#catalogo h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.filtros {
+    margin-bottom: 20px;
+}
+
+.filtros form {
+    display: inline-block;
+}
+
+.filtros label {
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+.filtros select {
+    padding: 10px;
+    font-size: 1rem;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Detalle del Recurso */
+#detalle {
+    background-color: #fff;
+    padding: 40px 20px;
+    margin-top: 20px;
+}
+
+#detalle h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.comentarios {
+    margin-top: 30px;
+}
+
+.comentarios h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.comentario {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+form textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    min-height: 100px;
+}
+
+form button {
+    background-color: #f4a261;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #e76f51; /* Color al pasar el mouse sobre el botón */
+}
+
+/* Registro/Login */
+#registro {
+    background-color: #fff;
+    padding: 40px 20px;
+    margin-top: 20px;
+}
+
+#registro h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#registro form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#registro label {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+#registro input {
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#registro button {
+    background-color: #f4a261;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#registro button:hover {
+    background-color: #e76f51; /* Color al pasar el mouse sobre el botón */
+}
+
+.fav-btn {
+    font-size: 150%;
+    border: none;
+    background-color: white;
+}
+
+/* Perfil */
+#perfil {
+    background-color: #fff;
+    padding: 40px 20px;
+    margin-top: 20px;
+}
+
+#perfil h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#perfil p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+#perfil button{
+    background-color: #f4a261;
+    color: #fff;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#perfil button:hover{
+    background-color: #e76f51; /* Color al pasar el mouse sobre el botón */
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 40px;
+}
+
+footer p {
+    font-size: 1rem;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .recurso-card {
+        width: 90%;
+        margin: 10px 0;
+    }
+
+    .filtros select {
+        width: 100%;
+    }
+
+    #registro input, #registro button {
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    #inicio h2 {
+        font-size: 1.8rem;
+    }
+
+    .recurso-card h4 {
+        font-size: 1.2rem;
+    }
+
+    .comentario, form textarea {
+        font-size: 1rem;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+    }
+}
+
+#imagenrecurso {
+    width: auto;
+    position: top right;
+    margin: 5%;
+}
+#recurso {
+    margin-top: 40px;
+    text-align: center                              ;
+}
+.info {
+    margin-right: 700px;
+    margin-left: 30px   ;
+}
+.recursos-lista {
+    display: flex;
+}
+h2 {
+    text-align: center;
+}
